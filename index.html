@@ -5,22 +5,41 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        html, body {
+            height:100%;
+        }
+        body {
+            display: grid;
+            place-items: center;
+        }
+        .text-red{
+            color: red;
+        }
+        .text-green{
+            color:green;
+        }
+    </style>
 </head>
 <body>
     <div id="app">
         <p>
             <input type="text" v-model="greeting">
         </p>
-        <p>
-            {{ greeting }}
-
-        </p>
+        <button v-bind:class="active ? 'text-red' : 'text-green'" v-on:click="toggle">Click</button>
     </div>
     <script>
         Vue.createApp({
             data(){
                 return {
-                    greeting: "Created Vue"
+                    greeting: "Created Vue",
+                    active: false
+                }
+            },
+
+            methods: {
+                toggle() {
+                    this.active = ! this.active
                 }
             },
 
